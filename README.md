@@ -1,74 +1,83 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+![NestJS&PrismaORM](./public/img/nestjs-prisma.png)
+# Projeto Default de Autenticação de usuário com NestJS e PrismaORM
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Este é um projeto default de autenticação desenvolvido com o NestJS e o PrismaORM. Ele fornece uma estrutura sólida para a criação de aplicativos web e APIs seguras com autenticação de usuário.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Recursos Principais
 
-## Description
+- **NestJS**: O [NestJS](https://docs.nestjs.com/first-steps)  é um framework Node.js altamente modular que oferece uma arquitetura escalável e pronta para produção. Ele é perfeito para criar aplicativos RESTful, GraphQL e WebSocket.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- **PrismaORM**: O [PrismaORM](https://www.prisma.io/docs/getting-started/quickstart) é uma ferramenta de mapeamento objeto-relacional (ORM) moderna e poderosa para Node.js e TypeScript. Ele simplifica a interação com bancos de dados SQL, permitindo que você escreva consultas de forma segura e eficiente.
 
-## Installation
+- **Autenticação JWT**: Utiliza JSON Web Tokens (JWT) para autenticar os usuários de forma segura, fornecendo tokens de acesso para autorização.
 
-```bash
-$ npm install
+- **Criptografia de Senha com bcrypt**: As senhas dos usuários são criptografadas usando a biblioteca `bcrypt` para garantir a segurança das informações confidenciais.
+
+- **Validação de Dados**: Usa as bibliotecas `class-validator` e `class-transformer` para validar e transformar dados de entrada.
+
+**Observação:** O schema do Prisma está configurado para usar o banco de dados PostgreSQL por padrão. No entanto, você pode facilmente alterar essa configuração para usar outro banco de dados de sua escolha, conforme necessário. Basta ajustar as configurações no arquivo `schema.prisma` para refletir a sua escolha de banco de dados.
+
+## Uso
+
+Este projeto default pode servir como uma base sólida para criar sua própria aplicação com autenticação. Você pode personalizá-lo de acordo com suas necessidades adicionando rotas, modelos de dados e lógica de negócios.
+
+## Contribuição
+
+Contribuições são bem-vindas! Sinta-se à vontade para abrir problemas (issues) e enviar solicitações de pull (pull requests) para melhorar este projeto.
+
+## Instalação
+Antes de começar a usar este projeto, siga as etapas de instalação descritas abaixo para configurar o ambiente e instalar as dependências necessárias.
+
+### 1. Instale o CLI do NestJS
+
+Certifique-se de que você tem o [NestJS CLI](https://docs.nestjs.com/first-steps) instalado globalmente.
+
+```
+npm i -g @nestjs/cli
+```
+### 2. Configure o arquivo `.env`
+
+Crie um arquivo `.env` na raiz do seu projeto com as seguintes variáveis de ambiente:
+
+```
+DATABASE_URL="***********[SEU BANCO DE DADOS]***********"
+JWT_SECRET="*********[CRIE UM JWT SECRET]**********"
 ```
 
-## Running the app
+### 3. Instale o Prisma
 
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+Execute os seguintes comandos para instalar e configurar o [Prisma](https://www.prisma.io/docs/getting-started/quickstart):
+```
+npm install --save @prisma/client
+npx prisma generate
+npx prisma migrate dev
 ```
 
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+### 4. Instale as Dependências
+Instale as seguintes dependências necessárias para a autenticação:
+```
+npm i --save @nestjs/config
+npm install --save @nestjs/jwt passport-jwt
+npm install --save-dev @types/passport-jwt
+npm i bcrypt
+npm i -D @types/bcrypt
+npm install --save @nestjs/passport passport passport-local
+npm install --save-dev @types/passport-local
+npm i --save class-validator class-transformer
 ```
 
-## Support
+## Como Rodar o Projeto
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+Para rodar o projeto, execute o seguinte comando:
 
-## Stay in touch
+```
+npm run start:dev
+```
+Isso iniciará o servidor do NestJS e tornará sua aplicação acessível no seu navegador em http://localhost:3000/
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+Certifique-se de ter todas as dependências instaladas e a configuração adequada antes de iniciar o projeto.
 
-## License
+### Contato
+Se você tiver alguma dúvida, sugestão ou precisar de assistência, sinta-se à vontade para entrar em contato comigo.
 
-Nest is [MIT licensed](LICENSE).
-# auth-end-crypt-nestjs
+- [Linkedin](https://www.linkedin.com/in/allan-batista-dev/)
